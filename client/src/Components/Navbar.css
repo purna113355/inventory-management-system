@@ -1,0 +1,128 @@
+/* =========================
+   Navbar
+========================= */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+
+  padding: 16px 30px;
+
+  background-color: #1f2937;
+  color: white;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================
+   Brand
+========================= */
+
+.navbar-brand {
+  margin-right: 45px;
+}
+
+.navbar-brand h2 {
+  margin: 0;
+
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* =========================
+   Navigation
+========================= */
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.navbar-menu button {
+  padding: 6px 0;
+
+  border: none;
+  background: transparent;
+
+  color: #e5e7eb;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.navbar-menu button:hover {
+  color: white;
+}
+
+/* =========================
+   Logout
+========================= */
+
+.navbar-logout {
+  margin-left: auto;
+}
+
+.navbar-logout button {
+  padding: 8px 16px;
+
+  border: 1px solid #6b7280;
+  border-radius: 6px;
+
+  background-color: transparent;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.navbar-logout button:hover {
+  background-color: #374151;
+  border-color: #9ca3af;
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 14px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .navbar-brand {
+    margin-right: auto;
+  }
+
+  .navbar-brand h2 {
+    font-size: 19px;
+  }
+
+  .navbar-menu {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .navbar-logout {
+    margin-left: 0;
+  }
+}

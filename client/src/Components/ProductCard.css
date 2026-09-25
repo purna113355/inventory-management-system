@@ -1,0 +1,123 @@
+/* =========================
+   Product Card
+========================= */
+
+.product-card {
+  border: 1px solid #e1e5ea;
+  border-radius: 12px;
+  padding: 22px;
+  background-color: white;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   Product Information
+========================= */
+
+.product-card h3 {
+  margin: 0 0 14px;
+  font-size: 20px;
+  color: #222;
+}
+
+.product-card p {
+  margin: 7px 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* =========================
+   Stock Status
+========================= */
+
+.stock-status {
+  font-weight: 700;
+  margin-top: 15px !important;
+  padding: 8px 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.in-stock {
+  color: #187a3d;
+  background-color: #eaf7ef;
+}
+
+.low-stock {
+  color: #9a6700;
+  background-color: #fff5d6;
+}
+
+.out-of-stock {
+  color: #c0392b;
+  background-color: #fdecea;
+}
+
+/* =========================
+   Stock Controls
+========================= */
+
+.stock-controls {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.stock-controls p {
+  font-weight: 600;
+  color: #333;
+}
+
+.stock-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.product-card button {
+  padding: 9px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.product-card button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.product-card button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================
+   Edit & Delete Buttons
+========================= */
+
+.edit-button {
+  background-color: #3498db;
+  color: white;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+}
