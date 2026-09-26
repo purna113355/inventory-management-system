@@ -1,3 +1,4 @@
+const API_URL = import.meta.env.VITE_API_URL;
 import { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./Components/Navbar.jsx";
@@ -57,7 +58,7 @@ function App() {
 
     setLoading(true);
 
-    fetch("http://127.0.0.1:8000/products", {
+    fetch(`${API_URL}/products`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -105,7 +106,7 @@ function App() {
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-          `http://127.0.0.1:8000/products/${editingId}`,
+          `${API_URL}/products/${editingId}`,
           {
             method: "PUT",
             headers: {
@@ -135,7 +136,7 @@ function App() {
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-          "http://127.0.0.1:8000/products",
+          `${API_URL}/products`,
           {
             method: "POST",
             headers: {
@@ -194,7 +195,7 @@ function App() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://127.0.0.1:8000/products/${id}`,
+        `${API_URL}/products/${id}`,
         {
           method: "PUT",
           headers: {
@@ -242,7 +243,7 @@ function App() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://127.0.0.1:8000/products/${deleteProductId}`,
+        `${API_URL}/products/${deleteProductId}`,
         {
           method: "DELETE",
           headers: {

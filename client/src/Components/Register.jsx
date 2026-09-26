@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Register.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +23,7 @@ function Register() {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/register", {
+      const response = await fetch(`${API_URL}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
