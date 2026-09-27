@@ -52,12 +52,17 @@ function Register() {
 
   return (
     <div className="register-container">
-      <div className="register-box">
 
-        <div className="register-heading">
-          <h2>Create your account</h2>
-          <p>Register to access your inventory dashboard</p>
-        </div>
+  <h1 className="welcome-title">
+    Welcome to Inventory Management System
+  </h1>
+
+  <div className="register-box">
+
+    <div className="register-heading">
+      <h2>Create your account</h2>
+      <p>Register to access your inventory dashboard</p>
+    </div>
 
         <div className="register-form">
           <label>Username</label>
