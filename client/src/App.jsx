@@ -22,19 +22,23 @@ function App() {
   const categories = [
     ...new Map(
       products.map((product) => {
-        const category = product.category.trim();
+        const category = (product.category || "").trim();
 
         return [category.toLowerCase(), category];
       })
     ).values(),
   ];
 
-  const filteredProducts = products.filter(
-    (product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (categoryFilter === "All" ||
-        product.category.toLowerCase() === categoryFilter.toLowerCase())
+const filteredProducts = products.filter((product) => {
+  const productName = (product.name || "").toLowerCase();
+  const productCategory = (product.category || "").toLowerCase();
+
+  return (
+    productName.includes(searchTerm.toLowerCase()) &&
+    (categoryFilter === "All" ||
+      productCategory === categoryFilter.toLowerCase())
   );
+});
 
   const lowStockProducts = products.filter(
     (product) => product.stock > 0 && product.stock <= 5
@@ -71,8 +75,8 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        setProducts(data);
-      })
+  setProducts(data);
+})
       .catch((error) => {
         console.error(error);
         setError("Unable to connect to the server.");
@@ -298,9 +302,9 @@ function App() {
             <h3>Total Stock</h3>
             <p>
               {products.reduce(
-                (total, product) => total + product.stock,
-                0
-              )}
+  (total, product) => total + (Number(product.stock) || 0),
+  0
+)}
             </p>
           </div>
 
@@ -410,7 +414,7 @@ function App() {
         <div className="product-grid">
           {filteredProducts.map((product) => (
             <ProductCard
-              key={product.id}
+              key={`product-${product.id}`}
               product={product}
               onDelete={handleDelete}
               onEdit={handleEdit}

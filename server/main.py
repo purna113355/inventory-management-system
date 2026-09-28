@@ -196,11 +196,10 @@ def get_products(current_user = Depends(get_current_user)):
     finally:
         cursor.close()
 
-
 @app.post("/products")
 def add_product(
     product: Product,
-    current_user = Depends(get_current_user)
+    current_user=Depends(get_current_user)
 ):
     cursor = db.cursor()
 
@@ -240,9 +239,10 @@ def add_product(
 def update_product(
     product_id: int,
     product: Product,
-    current_user = Depends(get_current_user)
+    current_user=Depends(get_current_user)
 ):
-    cursor = db.cursor()
+    db = get_db_connection()
+    cursor = db.cursor(dictionary=True)
 
     try:
         query = """
@@ -259,22 +259,29 @@ def update_product(
         )
 
         cursor.execute(query, values)
-
         db.commit()
 
-        if cursor.rowcount == 0:
-            return {"message": "Product not found"}
+        # Get the product again after updating
+        cursor.execute(
+            "SELECT id, name, category, stock FROM products WHERE id = %s",
+            (product_id,)
+        )
 
-        return {
-            "id": product_id,
-            "name": product.name,
-            "category": product.category,
-            "stock": product.stock
-        }
+        updated_product = cursor.fetchone()
+
+        if updated_product is None:
+            raise HTTPException(
+                status_code=404,
+                detail="Product not found"
+            )
+
+        return updated_product
+
+    except HTTPException:
+        raise
 
     except mysql.connector.Error:
         db.rollback()
-
         raise HTTPException(
             status_code=500,
             detail="Database error while updating product"
