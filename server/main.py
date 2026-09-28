@@ -64,6 +64,16 @@ db = mysql.connector.connect(
     database=os.getenv("DB_NAME")
 )
 
+def get_db_connection():
+    global db
+
+    db.ping(
+        reconnect=True,
+        attempts=3,
+        delay=2
+    )
+
+    return db
 
 
 class Product(BaseModel):
@@ -81,6 +91,7 @@ def home():
 
 @app.post("/register")
 def register_user(user: User):
+    db = get_db_connection()
     cursor = db.cursor()
 
     try:
